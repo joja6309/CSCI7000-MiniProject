@@ -1,11 +1,8 @@
-# Package imports
-import sys
+import sys, sklearn, matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import sklearn
 import sklearn.datasets
 import sklearn.linear_model
-import matplotlib
 class Network:
     np.random.seed(0)
     l1_dimension = 2
@@ -22,7 +19,7 @@ class Network:
       self.oL = None
       self.hidden_d = hidden_choice
     def forward_propagation(self,scatter_plot_values):
-        iL = scatter_plot_values.dot(self.syn1) + self.back_prop_1  # Map input layer 2-nodes to hidden layer 3-nodes
+        iL = scatter_plot_values.dot(self.syn1) + self.back_prop_1  # Map
         if self.activation_choice == 0:
             self.oL = np.tanh(iL)
             syn2_shift = self.oL.dot(self.syn2) + self.back_prop_2
@@ -73,70 +70,40 @@ def prediction_function(quad, x):
     network_prediction = np.exp(syn2_shift)
     softM_input = network_prediction / np.sum(network_prediction, axis=1, keepdims=True)
     return np.argmax(softM_input, axis=1)
-# ,tableau20
-def draw_boundary(pred_func,scatter_plot_values,class_membership,m):
-
-    # Ensure that the axis ticks only show up on the bottom and left of the plot.
-    # Ticks on the right and top of the plot are generally unnecessary chartjunk.
-    # ax.get_xaxis().tick_bottom()
-    # ax.get_yaxis().tick_left()
-
+def draw_boundary(pred_func,scatter_plot_values,class_membership):
     domain_min, domain_max = scatter_plot_values[:, 0].min() - .5, scatter_plot_values[:, 0].max() + .5
     range_min, range_max = scatter_plot_values[:, 1].min() - .5, scatter_plot_values[:, 1].max() + .5
     h = 0.01
     y_values, x_values = np.meshgrid(np.arange(domain_min, domain_max, h), np.arange(range_min, range_max, h))
-
     plot = pred_func(np.c_[y_values.ravel(), x_values.ravel()])
-
     plot = plot.reshape(y_values.shape)
-
     ax = plt.subplot(111)
     ax.spines["top"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_visible(False)
-
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
-    plt.figure(facecolor="white")
-
     plt.ylim(range_min, range_max)
     plt.xlim(domain_min, domain_max)
-
-
-
-
-    plt.contourf(y_values, x_values, plot, cmap=m)
-
-    plt.scatter(scatter_plot_values[:,0], scatter_plot_values[:,1], s=30, c=class_membership, cmap = m)
-
-    plt.show()
+    plt.contourf(y_values, x_values, plot, cmap=plt.cm.Spectral)
+    plt.scatter(scatter_plot_values[:,0], scatter_plot_values[:,1], s=30, c=class_membership, cmap = plt.cm.Spectral)
     return
-
 def main():
     scatter_plot_values, class_membership  = sklearn.datasets.make_moons(200, noise=0.20)
-    # Uncomment this chunk and then comment out the section below if you want to look through the available color schemes
-    # They are all garbage.........Along with the way the graph looks in general
-    # for m in plt.cm.datad:
-    #         LR_function = sklearn.linear_model.LogisticRegressionCV()
-    #         LR_function.fit(scatter_plot_values, class_membership)
-    #         draw_boundary(lambda x: LR_function.predict(x),scatter_plot_values,class_membership,m) #,tableau20
-    #         x = raw_input("\n\n Continue? (y/n): ")
-    #         if x == 'n':
-    #             break
     LR_function = sklearn.linear_model.LogisticRegressionCV()
     LR_function.fit(scatter_plot_values, class_membership)
     draw_boundary(lambda x: LR_function.predict(x),scatter_plot_values,class_membership) #,tableau20
     plt.title("Regression Prediction")
-
+    plt.show()
     network = Network(len(scatter_plot_values),0,3)
     quad =  network.train(scatter_plot_values,20000,class_membership)
-
-    draw_boundary(lambda x: prediction_function(quad,x),scatter_plot_values,class_membership,tableau20)
+    draw_boundary(lambda x: prediction_function(quad,x),scatter_plot_values,class_membership)
     plt.title("Network Prediction")
-
-
+    plt.show()
 main()
+
+
 
 
 
