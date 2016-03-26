@@ -1,0 +1,58 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red0\green0\blue0;\red255\green255\blue255;
+\red26\green27\blue29;\red43\green39\blue19;\red26\green26\blue26;}
+\margl1440\margr1440\vieww16600\viewh8560\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+Python Installation Checklist: \
+1.) home brew \
+2.) pip \
+3.) spicy\
+4.) numpy \
+5.) scikit-learn \
+6.) matplot-lib\
+\
+\
+ruby -e "$(curl -fsSL {\field{\*\fldinst{HYPERLINK "http://t.umblr.com/redirect?z=https%3A%2F%2Fraw.githubusercontent.com%2FHomebrew%2Finstall%2Fmaster%2Finstall&t=MTM2Mzg1YTU3ODZjYjE1OTRmYjRhOTE5NzVkMDU5ZDZiOTg1ZTNkMSxuM3pBOVV2cQ%3D%3D"}}{\fldrslt https://raw.githubusercontent.com/Homebrew/install/master/install}})"\
+brew help\
+echo "export PATH=/usr/local/bin:/usr/local/sbin:$PATH" &gt;&gt; ~/.profile\
+source ~/.profile\
+brew install python\
+python -V\
+sudo pip install --upgrade pip\
+pip -V\
+\
+Now you have two package managers that are capable of installing python libraries: \
+	Note: my go to is home brew but if you run into problems you can just use the other specified option\
+Try these commands to get everything installed:
+\f1 \cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf3 \cb4 Prerequisite:\
+\pard\pardeftab720\partightenfactor0
+\cf3 sudo apt-get install build-essential gfortran libatlas-base-dev python-pip python-dev\
+sudo pip install --upgrade pip\
+\pard\pardeftab720\partightenfactor0
+\cf3 Actual packages:\
+\pard\pardeftab720\partightenfactor0
+\cf3 sudo pip install numpy\
+sudo pip install scipy\
+\pard\pardeftab720\partightenfactor0
+\cf3 Optional packages:\
+\pard\pardeftab720\partightenfactor0
+\cf3 sudo pip install matplotlib   OR  sudo apt-get install python-matplotlib\
+sudo pip install -U scikit-learn\
+sudo pip install pandas\
+\
+Might be missing stuff google if that is the case\'85\'85..\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf3 		\
+	
+\f0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb1 	}
